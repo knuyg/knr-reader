@@ -1,0 +1,336 @@
+:root {
+  color-scheme: dark;
+  --bg: #16181f;
+  --bg-raised: #1f232e;
+  --border: #2e3442;
+  --text: #dfe3ee;
+  --text-dim: #8b93a7;
+  --accent: #7aa2f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #10121a;
+}
+
+input {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
+/* ---- App chrome ---- */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+}
+
+.doc-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-dim);
+}
+
+.error-banner {
+  padding: 10px 16px;
+  background: #4a1f27;
+  color: #ffb3bd;
+  border: 1px solid #7e2f3d;
+  border-radius: 6px;
+  margin: 8px 12px;
+}
+
+/* ---- Welcome screen ---- */
+
+.welcome {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.welcome h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.welcome .subtitle {
+  margin: 0 0 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+}
+
+.welcome .primary {
+  font-size: 1.1rem;
+  padding: 10px 24px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #10121a;
+}
+
+.welcome .hint {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.recent {
+  margin-top: 24px;
+  min-width: 320px;
+}
+
+.recent h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.recent ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recent li button {
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Shared viewer chrome ---- */
+
+.viewer {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.page-input {
+  width: 64px;
+  text-align: center;
+}
+
+.page-total,
+.zoom-label {
+  color: var(--text-dim);
+  padding: 0 4px;
+  white-space: nowrap;
+}
+
+button.zoom-label {
+  min-width: 56px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-left: 6px;
+}
+
+.swatch {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.swatch.active {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+
+/* ---- Comic viewer ---- */
+
+.comic-stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  background: #0c0d12;
+}
+
+.spread {
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.comic-stage.fit-height .spread {
+  align-items: stretch;
+}
+
+.spread img {
+  display: block;
+  object-fit: contain;
+}
+
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  min-width: 200px;
+  min-height: 300px;
+}
+
+/* ---- PDF viewer ---- */
+
+.pdf-stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #0c0d12;
+  padding: 16px 0;
+}
+
+.pdf-page {
+  position: relative;
+  margin: 0 auto 16px;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.pdf-page canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Text layer (minimal subset of pdf.js viewer styles). Spans are positioned
+   by pdf.js itself using the --scale-factor variable on .pdf-page. */
+.textLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  line-height: 1;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  caret-color: CanvasText;
+  user-select: text;
+}
+
+.textLayer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+.textLayer ::selection {
+  background: rgba(122, 162, 247, 0.4);
+}
+
+.pdf-stage.highlighting .textLayer {
+  cursor: crosshair;
+}
+
+.highlightLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* In highlight mode the highlights must sit above the text layer so they can
+   be clicked to remove them. */
+.pdf-stage.highlighting .highlightLayer {
+  z-index: 3;
+}
+
+.highlight {
+  position: absolute;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  border-radius: 2px;
+}
+
+.pdf-stage.highlighting .highlight:hover {
+  outline: 1px solid #ff5c5c;
+  cursor: pointer;
+}
